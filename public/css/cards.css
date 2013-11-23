@@ -2,4 +2,10 @@
 	width: 73px;
 	height: 98px;
 	background: url('../res/cards.png') no-repeat;
+	display: inline-block;
+}
+
+#content {
+	witdth: 50%;
+	overflow: scroll;
 }
