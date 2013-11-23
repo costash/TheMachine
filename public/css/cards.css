@@ -5,7 +5,23 @@
 	display: inline-block;
 }
 
-#content {
-	witdth: 50%;
-	overflow: scroll;
+#container {
+	overflow: auto;
+}
+
+#cards {
+    width: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+#cards ul {
+    display: inline-block;
+    height: 100px;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}
+#cards li {
+    display: inline-block;
 }

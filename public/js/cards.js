@@ -11,7 +11,7 @@ var RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
 var cards = [];
 
 var Card = function(rank, suit) {
-	var card = document.createElement('div');
+	var card = document.createElement('li');
 	card.className = 'card';
 
 	this.rank = rank;
@@ -48,7 +48,7 @@ for (var i = 0; i < 20; ++i) {
 
 function attachToDom(cards) {
 	for(var i = 0; i < cards.length; ++i) {
-		$('#container').append(cards[i].card);
+		$('#cards ul').append(cards[i].card);
 	}
 }
 
