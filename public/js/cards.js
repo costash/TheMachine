@@ -14,18 +14,19 @@ var Card = function(rank, suit) {
 	var card = document.createElement('li');
 	card.className = 'card';
 
+	card.addEventListener('click', function() {
+		socket.emit('game:place-card', [this.rank, this.suit]);
+		console.log('Clicked on ' + this.rank + ' of ' + this.suit);
+	}.bind(this));
+
 	this.rank = rank;
 	this.suit = suit;
 
 	this.card = card;
 
 	this.setImagePos(RANKS.indexOf(rank), SUITS.indexOf(suit));
-	return this;
-};
 
-Card.prototype.setPosition = function _position(x, y) {
-	this.x = x;
-	this.y = y;   
+	return this;
 };
 
 Card.prototype.setSize = function setSize(w, h) {
