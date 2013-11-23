@@ -1,0 +1,27 @@
+.card {
+	width: 73px;
+	height: 98px;
+	background: url('../res/cards.png') no-repeat;
+	display: inline-block;
+}
+
+#container {
+	overflow: auto;
+}
+
+#cards {
+    width: 100%;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+#cards ul {
+    display: inline-block;
+    height: 100px;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+}
+#cards li {
+    display: inline-block;
+}
