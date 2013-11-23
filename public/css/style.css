@@ -1,0 +1,65 @@
+/* CSS Document */
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/**
+ * 	Login Panel
+ */
+
+#login-panel {
+	width: 300px;
+	margin: -200px 0 0 -150px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+}
+
+#login-panel .panel-heading {
+	margin: 0 0 0.5em 0;
+}
+
+#login-panel .panel-title {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#login-panel #login-status {
+	display: none;
+}
+
+#login-panel #login-status[data-hidden="false"] {
+	display: block;
+}
+
+/**
+ * 	Home page
+ */
+
+#main-header {
+	width: 100%;
+	padding: 10px;
+	display: inline-block;
+}
+
+#main-header .text-muted {
+	float: left;
+}
+
+#main-header .user-info {
+	margin:30px 0 10px 0;
+	float: right;
+}
+
+#main-header .user-info .text-info {
+	padding: 0 0 0 10px;
+}
+
+#main-header .user-info a:hover {
+	cursor: pointer;
+	text-decoration: none;
+}
+
+
