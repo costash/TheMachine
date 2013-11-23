@@ -27,3 +27,7 @@ proguard/
 *.ipr
 *.iws
 .idea/
+/node_modules/.bin
+/node_modules/express
+/node_modules/socket.io
+/node_modules/shuffle
