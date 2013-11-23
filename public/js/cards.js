@@ -34,8 +34,7 @@ Card.prototype.setSize = function setSize(w, h) {
 }
 
 Card.prototype.setImagePos = function setImagePos(x, y) {
-	this.card.style.backgroundPositionX = -x * 73 + 'px';
-	this.card.style.backgroundPositionY = -y * 98 + 'px';
+	this.card.style.backgroundPosition = 'left ' + -x * 73 + 'px top ' + -y * 98 + 'px';
 }
 
 cards.push(new Card('J', 'D'));
