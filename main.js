@@ -202,7 +202,6 @@ var Game = (function Game () {
 			players[playerID].sync();
 		}
 		nextToken();
-		RASB.drawInstance(pl, top_card, 0, token);
 		PP.log(top_card);
 	}
 
