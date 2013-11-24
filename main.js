@@ -173,9 +173,9 @@ var Game = (function Game () {
 		console.log(players[playerID].name + " placed: ", card.type, card.rank);
 		Deck.putOnBottomOfDeck(card);
 		players[playerID].removeCard(card);
-		nextToken();
 		top_card.type = card.type;
 		top_card.rank = card.rank;
+		nextToken();
 		RASB.drawInstance(pl, top_card, 0, token);		
 	}
 
