@@ -94,6 +94,8 @@ Player.prototype.syncTop = function (card) {
 	this.socket.emit('game:top', card);
 };
 
+var pl = ['Gabi', 'Alex', 'Mircea', 'Radu'];
+
 var Game = (function Game () {
 	var players = [];
 	var Deck;
@@ -132,7 +134,7 @@ var Game = (function Game () {
 		if (players.length === 2 && started === false ) {
 			started = true;
 			top_card = Deck.draw();
-
+			RASB.drawInstance(pl, top_card, 0, token);
 			sendTurnInfo();
 			
 			for (var i=0; i<players.length; i++) {
@@ -173,8 +175,7 @@ var Game = (function Game () {
 		players[playerID].removeCard(card);
 		nextToken();
 		top_card = card;
-		var pl = ['Gabi', 'Alex', 'Mircea', 'Radu'];
-		RASB.drawInstance(pl[token], top_card, 0, token);		
+		RASB.drawInstance(pl, top_card, 0, token);		
 	}
 
 	function nextToken() {
