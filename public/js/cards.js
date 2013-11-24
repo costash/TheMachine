@@ -37,7 +37,7 @@ var Alert = (function() {
 var Card = function(type, rank) {
 	var card = document.createElement('div');
 	card.className = 'card';
-	card.id = SUITS[type] + rank;
+	card.id = SUITS[type] + (rank+1);
 
 	card.addEventListener('click', function() {
 		if (TURN === false) {
@@ -53,7 +53,7 @@ var Card = function(type, rank) {
 			return;
 		}
 
-		if (this.type === top_card.type || this.rank === 1) {
+		if (this.type === top_card.type || this.rank === 0) {
 			this.placeCard(this.type, this.rank);
 			return;
 		}
@@ -85,7 +85,7 @@ Card.prototype.placeCard = function placeCard() {
 var card_container = document.getElementById('cards');
 
 for (var i=0; i<=3; i++) {
-	for (var j=1; j<=13; j++) {
+	for (var j=0; j<13; j++) {
 		Deck.push(new Card(i, j));
 	}
 }
@@ -114,7 +114,7 @@ socket.on('game:sync', function (data) {
 	console.log('TOP CARD:', top_card);
 
 	for (var i in cards) {
-		var cardID = cards[i].type * 13 + cards[i].rank - 1;
+		var cardID = cards[i].type * 13 + cards[i].rank;
 		card_container.appendChild(Deck[cardID].node);
 	}
 });

@@ -106,7 +106,7 @@ var Game = (function Game () {
 	function initDeck() {
 		var format = [];
 		for (var i=0; i<4; i++) {
-			for (var j=1; j<=13; j++)
+			for (var j=0; j<13; j++)
 				format.push({type: i, rank: j});
 		}
 
