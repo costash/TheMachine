@@ -22,7 +22,7 @@ function drawInstance(players, card, umflaturi, current_player) {
 	initCanvas();
 	console.log(card);
 	var y = card.type * 98,
-	    x = (card.rank - 1) * 73,
+	    x = (card.rank) * 73,
 	    w = 73,
 	    h = 98;
 	console.log(x," ", y);
