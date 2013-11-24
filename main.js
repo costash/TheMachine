@@ -202,6 +202,7 @@ var Game = (function Game () {
 		}
 		nextToken();
 		RASB.drawInstance(pl, top_card, 0, token);
+		PP.log(top_card);
 	}
 
 	function getTopCard() {
