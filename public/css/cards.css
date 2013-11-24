@@ -1,27 +1,284 @@
-.card {
-	width: 73px;
-	height: 98px;
-	background: url('../res/cards.png') no-repeat;
-	display: inline-block;
+body {
+	margin: 50px auto 0;
 }
 
 #container {
-	overflow: auto;
 }
 
-#cards {
-    width: 100%;
-    overflow: auto;
-    margin: 0;
-    padding: 0;
+#alert {
+	width: 80%;
+	margin: -35px 10% 0;
+	padding: 10px;
+	border: 1px solid #D6E9C6;
+	background-color: #DFF0D8;
+	color: #468847;
+	border-radius: 10px;
+	font-size: 40px;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	display: none;
 }
-#cards ul {
-    display: inline-block;
-    height: 100px;
-    white-space: nowrap;
-    margin: 0;
-    padding: 0;
+
+#alert[data-hidden='false'] {
+	display: block !important;
 }
-#cards li {
-    display: inline-block;
+
+
+#draw {
+	width: 20%;
+	margin: 0 -10% 0 0;
+	padding: 20px;
+	background-color: rgb(217, 237, 247);
+	border: 2px solid rgb(188, 232, 241);
+	border-radius: 10px;
+	font-size: 24px;
+	color: rgb(58, 135, 173);
+	text-align: center;
+	position: absolute;
+	bottom: 10%;
+	right: 15%;
+}
+
+#draw:hover {
+	cursor: pointer;
+}
+
+.card {
+	width: 145px;
+	height: 200px;
+	float: left;
+	background-size: 100% 100% !important;
+	transition: all 0.2s;
+}
+
+.card:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+
+/*
+ * SPIDES cards
+ */
+
+#S1 {
+	background: url('../img/cards/S1.png');
+}
+
+#S2 {
+	background: url('../img/cards/S2.png');
+}
+
+#S3 {
+	background: url('../img/cards/S3.png');
+}
+
+#S4 {
+	background: url('../img/cards/S4.png');
+}
+
+#S5 {
+	background: url('../img/cards/S5.png');
+}
+
+#S6 {
+	background: url('../img/cards/S6.png');
+}
+
+#S7 {
+	background: url('../img/cards/S7.png');
+}
+
+#S8 {
+	background: url('../img/cards/S8.png');
+}
+
+#S9 {
+	background: url('../img/cards/S9.png');
+}
+
+#S10 {
+	background: url('../img/cards/S10.png');
+}
+
+#S11 {
+	background: url('../img/cards/S11.png');
+}
+
+#S12 {
+	background: url('../img/cards/S12.png');
+}
+
+#S13 {
+	background: url('../img/cards/S13.png');
+}
+
+
+/*
+ * DIAMOND cards
+ */
+
+#D1 {
+	background: url('../img/cards/D1.png');
+}
+
+#D2 {
+	background: url('../img/cards/D2.png');
+}
+
+#D3 {
+	background: url('../img/cards/D3.png');
+}
+
+#D4 {
+	background: url('../img/cards/D4.png');
+}
+
+#D5 {
+	background: url('../img/cards/D5.png');
+}
+
+#D6 {
+	background: url('../img/cards/D6.png');
+}
+
+#D7 {
+	background: url('../img/cards/D7.png');
+}
+
+#D8 {
+	background: url('../img/cards/D8.png');
+}
+
+#D9 {
+	background: url('../img/cards/D9.png');
+}
+
+#D10 {
+	background: url('../img/cards/D10.png');
+}
+
+#D11 {
+	background: url('../img/cards/D11.png');
+}
+
+#D12 {
+	background: url('../img/cards/D12.png');
+}
+
+#D13 {
+	background: url('../img/cards/D13.png');
+}
+
+/*
+ * HEART cards
+ */
+
+#H1 {
+	background: url('../img/cards/H1.png');
+}
+
+#H2 {
+	background: url('../img/cards/H2.png');
+}
+
+#H3 {
+	background: url('../img/cards/H3.png');
+}
+
+#H4 {
+	background: url('../img/cards/H4.png');
+}
+
+#H5 {
+	background: url('../img/cards/H5.png');
+}
+
+#H6 {
+	background: url('../img/cards/H6.png');
+}
+
+#H7 {
+	background: url('../img/cards/H7.png');
+}
+
+#H8 {
+	background: url('../img/cards/H8.png');
+}
+
+#H9 {
+	background: url('../img/cards/H9.png');
+}
+
+#H10 {
+	background: url('../img/cards/H10.png');
+}
+
+#H11 {
+	background: url('../img/cards/H11.png');
+}
+
+#H12 {
+	background: url('../img/cards/H12.png');
+}
+
+#H13 {
+	background: url('../img/cards/H13.png');
+}
+
+/*
+ * C cards
+ */
+
+#C1 {
+	background: url('../img/cards/C1.png');
+}
+
+#C2 {
+	background: url('../img/cards/C2.png');
+}
+
+#C3 {
+	background: url('../img/cards/C3.png');
+}
+
+#C4 {
+	background: url('../img/cards/C4.png');
+}
+
+#C5 {
+	background: url('../img/cards/C5.png');
+}
+
+#C6 {
+	background: url('../img/cards/C6.png');
+}
+
+#C7 {
+	background: url('../img/cards/C7.png');
+}
+
+#C8 {
+	background: url('../img/cards/C8.png');
+}
+
+#C9 {
+	background: url('../img/cards/C9.png');
+}
+
+#C10 {
+	background: url('../img/cards/C10.png');
+}
+
+#C11 {
+	background: url('../img/cards/C11.png');
+}
+
+#C12 {
+	background: url('../img/cards/C12.png');
+}
+
+#C13 {
+	background: url('../img/cards/C13.png');
 }

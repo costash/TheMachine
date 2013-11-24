@@ -1,30 +1,56 @@
-function loadImage(URL, imageObj) {
-	imageObj.onload = function() {
-		
-	}
-	
-	imageObj.src = URL;
-}
+var socket = io.connect();
 
 var SUITS = ['C', 'S', 'H', 'D'];
-var RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
-var cards = [];
+var Deck = [];
+var top_card = null;
 
-var Card = function(rank, suit) {
-	var card = document.createElement('li');
+var Draw = document.getElementById('draw');
+
+Draw.addEventListener('click', function() {
+	socket.emit('game:draw-card');
+});
+
+var Alert = (function() {
+	var node = document.getElementById('alert');
+
+	function setMesssage(msg) {
+		console.log('MESSAGE SET');
+		setTimeout(hideAllert, 500);
+		node.setAttribute('data-hidden', 'false');
+		node.textContent = msg;
+	}
+
+	function hideAllert() {
+		console.log('MESSAGE HIDDEN');
+		node.removeAttribute('data-hidden');
+	}
+
+	return {
+		setMesssage : setMesssage
+	};
+
+})();
+
+
+var Card = function(suit, rank) {
+	var card = document.createElement('div');
 	card.className = 'card';
+	card.id = SUITS[suit] + rank;
 
 	card.addEventListener('click', function() {
-		socket.emit('game:place-card', [this.rank, this.suit]);
-		console.log('Clicked on ' + this.rank + ' of ' + this.suit);
+		console.log("CARTE APASATA:", this.type, this.rank);
+
+		if (this.type !== top_card.suit || this.rank !== 1) {
+			Alert.setMesssage("You're not allowed to put down this card!");
+			return;
+		}
+
+
 	}.bind(this));
 
 	this.rank = rank;
-	this.suit = suit;
-
-	this.card = card;
-
-	this.setImagePos(RANKS.indexOf(rank), SUITS.indexOf(suit));
+	this.type = suit;
+	this.node = card;
 
 	return this;
 };
@@ -32,24 +58,35 @@ var Card = function(rank, suit) {
 Card.prototype.setSize = function setSize(w, h) {
 	this.width = w;
 	this.height = h;
-}
+};
 
-Card.prototype.setImagePos = function setImagePos(x, y) {
-	this.card.style.backgroundPosition = 'left ' + -x * 73 + 'px top ' + -y * 98 + 'px';
-}
+Card.prototype.placeCard = function placeCard() {
+	socket.emit('game:place-card', [this.suit, this.rank]);
+};
 
-cards.push(new Card('J', 'D'));
-cards.push(new Card('A', 'H'));
-cards.push(new Card('T', 'S'));
-cards.push(new Card('4', 'C'));
-for (var i = 0; i < 20; ++i) {
-	cards.push(new Card(RANKS[i % 13], SUITS[i % 4]));
-}
+/*
+ * Create the deck of cards
+ */
 
-function attachToDom(cards) {
-	for(var i = 0; i < cards.length; ++i) {
-		$('#cards ul').append(cards[i].card);
+var card_container = document.getElementById('cards');
+
+for (var i=0; i<=3; i++) {
+	for (var j=1; j<=13; j++) {
+		Deck.push(new Card(i, j));
 	}
 }
 
-attachToDom(cards);
+socket.on('game:sync', function (data) {
+	card_container.textContent = '';
+	console.log(data);
+
+	top_card = data.top;
+	var cards = data.hand;
+
+	console.log('TOP CARD:', top_card);
+
+	for (var i in cards) {
+		var cardID = cards[i].type * 13 + cards[i].rank - 1;
+		card_container.appendChild(Deck[cardID].node);
+	}
+});
