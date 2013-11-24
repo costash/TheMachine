@@ -94,7 +94,7 @@ Player.prototype.syncTop = function (card) {
 	this.socket.emit('game:top', card);
 };
 
-var pl = ['Gabi', 'Alex', 'Mircea', 'Radu'];
+var pl = ['Gabi', 'Alex', 'Mircea', 'Costash'];
 
 var Game = (function Game () {
 	var players = [];
