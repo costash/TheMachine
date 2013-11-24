@@ -1,5 +1,5 @@
 body {
-	margin: 50px auto 0;
+	margin: 50px;
 }
 
 #container {
@@ -18,12 +18,27 @@ body {
 	position: absolute;
 	top: 50%;
 	display: none;
+	z-index: 100;
 }
 
 #alert[data-hidden='false'] {
 	display: block !important;
 }
 
+#turn {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: red;
+	position: absolute;
+	top: 10%;
+	right: 10%;
+	z-index: 100;
+}
+
+#turn[data-turn='true'] {
+	background-color: green;
+}
 
 #draw {
 	width: 20%;
@@ -47,6 +62,7 @@ body {
 .card {
 	width: 145px;
 	height: 200px;
+	margin: 10px;
 	float: left;
 	background-size: 100% 100% !important;
 	transition: all 0.2s;

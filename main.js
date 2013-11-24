@@ -72,14 +72,24 @@ Player.prototype.sync = function sync() {
 };
 
 Player.prototype.removeCard = function removeCard(card) {
+	PP.log(this.cards);
+
 	for (var i = 0; i < this.cards.length; i++) {
 		if (this.cards[i].type === card.type &&
 			this.cards[i].rank === card.rank) {
 			this.cards.splice(i, 1);
+			this.sync();
 			return;
 		}
 	}
-	this.sync();
+};
+
+Player.prototype.syncTurn = function (value) {
+	this.socket.emit('game:turn', value);
+};
+
+Player.prototype.syncTop = function (card) {
+	this.socket.emit('game:top', card);
 };
 
 var Game = (function Game () {
@@ -121,12 +131,12 @@ var Game = (function Game () {
 			started = true;
 			top_card = Deck.draw();
 
+			sendTurnInfo();
+			
 			for (var i=0; i<players.length; i++) {
 				if (players[i])
 					players[i].sync();
 			}
-
-
 		}
 		else {
 			if (started === false) {
@@ -134,8 +144,18 @@ var Game = (function Game () {
 			}
 			else {
 				players[playerID].sync();
+				sendTurnInfo();
 			}
 		}
+	}
+	
+	function sendTurnInfo() {
+		for (var i=0; i<players.length; i++) {
+			if (i != token)
+				players[i].syncTurn(false);
+		}
+		players[token].syncTurn(true);
+		players[token].syncTop(top_card);
 	}
 
 	function placeCard(card, playerID) {
@@ -147,12 +167,18 @@ var Game = (function Game () {
 		}
 
 		console.log(players[playerID].name + " placed: ", card.type, card.rank);
-		deck.putOnBottomOfDeck({type: card.type, rank: card.nr});
+		Deck.putOnBottomOfDeck(card);
 		players[playerID].removeCard(card);
+		nextToken();
 	}
 
 	function nextToken() {
-		tocken = ((token + 1) / players.length) | 0;
+		console.log('Last player:', token);				
+		do {
+			token = (token + 1) % players.length;
+		} while(players[token] === null);
+		console.log('Next player:', token);				
+		sendTurnInfo();
 	}
 
 	function drawCard(playerID) {
@@ -163,8 +189,11 @@ var Game = (function Game () {
 			return;
 		}
 
-		players[playerID].cards.push(Deck.draw());
-		players[playerID].sync();
+		var card = Deck.draw();
+		if (card) {
+			players[playerID].cards.push(Deck.draw());
+			players[playerID].sync();
+		}
 		nextToken();
 	}
 
