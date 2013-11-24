@@ -174,7 +174,8 @@ var Game = (function Game () {
 		Deck.putOnBottomOfDeck(card);
 		players[playerID].removeCard(card);
 		nextToken();
-		top_card = card;
+		top_card.type = card.type;
+		top_card.rank = card.rank;
 		RASB.drawInstance(pl, top_card, 0, token);		
 	}
 
