@@ -14,10 +14,12 @@ function initCanvas() {
 	ctx.save();
 	ctx.fillRect(0, 0, canvas.width, canvas.height);		
 	canvas.vgSwapBuffers();
-	
+/*	ctx.fillStyle='#EDFD44';
+	ctx.fillText('http://'+ip+':8080/', canvas.width/2, 800);*/
 }
 
 function drawInstance(players, card, umflaturi, current_player) {
+	initCanvas();
 	console.log(card);
 	var y = card.type * 98,
 	    x = (card.rank - 1) * 73,
