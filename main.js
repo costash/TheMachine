@@ -9,10 +9,12 @@ var server = require('http').createServer(app);
 var	io = require('socket.io').listen(server);
 var Shuffle = require('shuffle');
 
+
 /*
  * Custom modules
  */
 var PP = require('modules/prettyprint');
+var RASB = require('./canvas');
 
 
 /*
@@ -170,6 +172,9 @@ var Game = (function Game () {
 		Deck.putOnBottomOfDeck(card);
 		players[playerID].removeCard(card);
 		nextToken();
+		top_card = card;
+		var pl = ['Gabi', 'Alex', 'Mircea', 'Radu'];
+		RASB.drawInstance(pl[token], top_card, 0, token);		
 	}
 
 	function nextToken() {

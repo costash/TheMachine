@@ -19,8 +19,8 @@ function initCanvas() {
 
 function drawInstance(players, card, umflaturi, current_player) {
 	console.log(card);
-	var y = card.type*98,
-	    x = card.nr * 73,
+	var y = card.type * 98,
+	    x = (card.rank - 1) * 73,
 	    w = 73,
 	    h = 98;
 	console.log(x," ", y);
@@ -55,7 +55,7 @@ function drawInstance(players, card, umflaturi, current_player) {
 
 initCanvas();
 
-//drawInstance(['Nicu', 'Alex', 'Tataie'], { type:0, nr: 0}, 20, 10);
+//33
 
 function drawWinScreen(players) {
 	initCanvas();
@@ -72,5 +72,8 @@ function drawWinScreen(players) {
 	canvas.vgSwapBuffers();	
 }
 
-drawWinScreen(['Tataie', 'Nicu', 'Alex']);
-ue.waitForInput();
+// drawWinScreen(['Tataie', 'Nicu', 'Alex']);
+// ue.waitForInput();
+
+exports.initCanvas = initCanvas;
+exports.drawInstance = drawInstance;
