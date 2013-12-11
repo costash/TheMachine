@@ -171,7 +171,7 @@ var Game = (function Game () {
 		}
 
 		console.log(players[playerID].name + " placed: ", card.type, card.rank);
-		Deck.putOnBottomOfDeck(card);
+		Deck.putOnBottomOfDeck({type: card.type, rank: card.rank});
 		players[playerID].removeCard(card);
 		top_card.type = card.type;
 		top_card.rank = card.rank;
